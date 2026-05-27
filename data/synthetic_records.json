@@ -1,0 +1,56 @@
+{
+  "agentPaymentRequests": [
+    {
+      "id": "req_001",
+      "agentName": "Family Grocery Agent",
+      "merchantVpa": "freshbasket@upi",
+      "amount": 780,
+      "purpose": "monthly groceries",
+      "status": "APPROVED",
+      "riskScore": 18,
+      "createdAt": "2026-05-27T11:10:00.000Z"
+    },
+    {
+      "id": "req_002",
+      "agentName": "Shopping Agent",
+      "merchantVpa": "unknown-wellness@upi",
+      "amount": 4999,
+      "purpose": "premium wellness hamper",
+      "status": "REJECTED",
+      "riskScore": 92,
+      "createdAt": "2026-05-27T11:14:00.000Z"
+    },
+    {
+      "id": "req_003",
+      "agentName": "Medicine Agent",
+      "merchantVpa": "night-pharma@upi",
+      "amount": 1200,
+      "purpose": "medicine refill",
+      "status": "STEP_UP",
+      "riskScore": 67,
+      "createdAt": "2026-05-27T11:18:00.000Z"
+    }
+  ],
+  "consentPolicies": [
+    {
+      "id": "pol_001",
+      "name": "Groceries daily cap",
+      "category": "GROCERIES",
+      "maxAmount": 1500,
+      "timeWindow": "06:00-23:00",
+      "requiresKnownMerchant": true,
+      "active": true,
+      "createdAt": "2026-05-27T10:00:00.000Z"
+    },
+    {
+      "id": "pol_002",
+      "name": "No vague new merchant payments",
+      "category": "GENERAL",
+      "maxAmount": 2000,
+      "timeWindow": "00:00-23:59",
+      "requiresKnownMerchant": true,
+      "active": true,
+      "createdAt": "2026-05-27T10:05:00.000Z"
+    }
+  ]
+}
