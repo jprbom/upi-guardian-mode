@@ -28,6 +28,21 @@ describe('UPI Guardian Mode API', () => {
 
   it('supports CRUD and protects delete through admin RBAC', async () => {
     const app = createApp(createTestDatabase());
+    const forgedRole = await request(app)
+      .post('/api/agent-payment-requests')
+      .set('x-user-role', 'UNKNOWN_ADMIN')
+      .send({
+  "agentName": "Forged Role Copilot",
+  "merchantVpa": "forged@upi",
+  "amount": 1200,
+  "purpose": "role spoof attempt",
+  "status": "STEP_UP",
+  "riskScore": 55
+});
+
+    expect(forgedRole.status).toBe(403);
+    expect(forgedRole.body.role).toBe('VIEWER');
+
     const created = await request(app)
       .post('/api/agent-payment-requests')
       .set('x-user-role', 'GUARDIAN_OPERATOR')
