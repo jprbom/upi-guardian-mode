@@ -1,14 +1,17 @@
 import request from 'supertest';
 import { describe, expect, it } from 'vitest';
 import { createApp } from '../src/app.js';
+import { signDemoToken, type Role } from '../src/auth.js';
 import { createTestDatabase } from '../src/db.js';
+
+const bearer = (role: Role) => 'Bearer ' + signDemoToken(role);
 
 describe('UPI Guardian Mode API', () => {
   it('returns an explainable domain decision', async () => {
     const app = createApp(createTestDatabase());
     const response = await request(app)
       .post('/api/guardian-decisions')
-      .set('x-user-role', 'GUARDIAN_OPERATOR')
+      .set('Authorization', bearer('GUARDIAN_OPERATOR'))
       .send({
   "amount": 4999,
   "merchantTrust": 0.42,
@@ -45,7 +48,7 @@ describe('UPI Guardian Mode API', () => {
 
     const created = await request(app)
       .post('/api/agent-payment-requests')
-      .set('x-user-role', 'GUARDIAN_OPERATOR')
+      .set('Authorization', bearer('GUARDIAN_OPERATOR'))
       .send({
   "agentName": "Grocery Copilot",
   "merchantVpa": "unknown-wellness@upi",
@@ -60,12 +63,12 @@ describe('UPI Guardian Mode API', () => {
 
     const denied = await request(app)
       .delete('/api/agent-payment-requests/' + created.body.id)
-      .set('x-user-role', 'GUARDIAN_OPERATOR');
+      .set('Authorization', bearer('GUARDIAN_OPERATOR'));
     expect(denied.status).toBe(403);
 
     const deleted = await request(app)
       .delete('/api/agent-payment-requests/' + created.body.id)
-      .set('x-user-role', 'ADMIN');
+      .set('Authorization', bearer('ADMIN'));
     expect(deleted.status).toBe(204);
   });
 
@@ -73,7 +76,7 @@ describe('UPI Guardian Mode API', () => {
     const app = createApp(createTestDatabase());
     const response = await request(app)
       .post('/api/mock-upi')
-      .set('x-user-role', 'OPS_MANAGER')
+      .set('Authorization', bearer('GUARDIAN_OPERATOR'))
       .send({
         txnId: 'TXN-DEMO-001',
         payerVpa: 'payer@oksbi',
