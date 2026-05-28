@@ -30,5 +30,6 @@
   "homepage": "https://github.com/jprbom/upi-guardian-mode#readme",
   "bugs": {
     "url": "https://github.com/jprbom/upi-guardian-mode/issues"
-  }
+  },
+  "license": "UNLICENSED"
 }
