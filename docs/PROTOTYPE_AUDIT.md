@@ -1,5 +1,9 @@
 # Prototype Audit Response
 
+## Latest Audit Closure
+
+The latest implementation adds signed demo-token RBAC, a five-adapter payment ecosystem simulator, HMAC webhook signing, duplicate and out-of-order webhook handling, refund/dispute/reconciliation APIs, a frontend Payment Ecosystem Timeline, 10,000-row synthetic AIML/DL artifacts, and expanded enterprise documentation.
+
 ## Honest Status
 
 UPI Guardian Mode is a runnable portfolio-grade prototype, not a production agentic-payment firewall. It demonstrates consent-policy decisioning, synthetic CRUD workflows, RBAC simulation, a mocked UPI/NPCI response, tests, CI, Docker packaging, and SDLC documentation.
@@ -20,11 +24,11 @@ It should not be presented as: **a real signed consent-control layer or bank/PSP
 
 ## Prototype Boundaries
 
-- RBAC is a simulator. It uses `x-user-role`; production would require OIDC/JWT, signed sessions, tenant isolation, KMS-backed secrets, and immutable audit logs.
+- RBAC remains a simulator, but it now uses signed local demo bearer tokens and ignores forged `x-user-role`; production would still require OIDC/JWT, signed sessions, tenant isolation, KMS-backed secrets, and immutable audit logs.
 - Current guardian logic accepts precomputed risk fields; it does not yet parse free-form agent prompts or enforce signed consent authority.
-- The ML script is educational and synthetic, not statistically valid prompt-risk or consent-abuse model training.
+- The ML script now generates 10,000 synthetic rows with train/test metrics, confusion matrix, model card, and feature importance. It remains synthetic and not statistically valid production prompt-risk or consent-abuse model training.
 - Persistence is JSON file storage, not an immutable consent ledger or delegated-authority store.
-- The UPI rail is fully mocked and does not connect to PSP apps, banks, Reserve Pay, mandates, UPI intent signing, or real step-up authentication.
+- The payment ecosystem simulator is fully mocked and does not connect to PSP apps, banks, Reserve Pay, mandates, UPI intent signing, or real step-up authentication.
 
 ## Serious Upgrade Path
 
@@ -33,4 +37,3 @@ It should not be presented as: **a real signed consent-control layer or bank/PSP
 - Add signed approval-token simulation, replay protection, duplicate-payment protection, and human review queue.
 - Add scenario tests for trusted groceries, unknown wellness merchant, hidden subscription, repeated payment, and late-night step-up.
 - Add privacy-preserving family/delegated-payment workflows with full audit explanations.
-

@@ -8,6 +8,20 @@
   <img src="assets/system-map.svg" width="100%" alt="UPI Guardian Mode system map">
 </p>
 
+## Latest Enhancement Map
+
+~~~mermaid
+flowchart LR
+  UI["Guardian Timeline CTA"] --> AUTH["Signed Demo Token"]
+  AUTH --> API["Express API"]
+  API --> CONSENT["Consent Policy Engine"]
+  CONSENT --> STEP["Human Step-up Review"]
+  STEP --> SIM["Payment Ecosystem Simulator"]
+  SIM --> TPAP["TPAP Handoff"]
+  TPAP --> NPCI["NPCI-style UPI Rail"]
+  NPCI --> UI
+~~~
+
 ## Product Decision Flow
 
 ~~~mermaid
@@ -37,12 +51,28 @@ sequenceDiagram
   participant Mock as Mock NPCI/UPI Rail
   participant DB as JSON Test DB
   User->>UI: Click tab, CTA, or row drill-down
-  UI->>API: Request with x-user-role
+  UI->>API: Request with signed demo bearer token
   API->>DB: Read/write synthetic records
   API->>Model: Score domain-specific risk or recommendation
   API->>Mock: Generate UPI-like response code, RRN, callback
   Mock-->>API: Sandbox response, no real money movement
   API-->>UI: Render decision, reason codes, and drill-down
+~~~
+
+## Agentic Payment Authority Lifecycle
+
+~~~mermaid
+stateDiagram-v2
+  [*] --> AGENT_PAYMENT_REQUEST
+  AGENT_PAYMENT_REQUEST --> CONSENT_POLICY_CHECK
+  CONSENT_POLICY_CHECK --> APPROVE
+  CONSENT_POLICY_CHECK --> STEP_UP_REQUIRED
+  CONSENT_POLICY_CHECK --> REJECT
+  STEP_UP_REQUIRED --> HUMAN_REVIEW
+  HUMAN_REVIEW --> TPAP_HANDOFF
+  APPROVE --> TPAP_HANDOFF
+  TPAP_HANDOFF --> NPCI_STYLE_RAIL
+  NPCI_STYLE_RAIL --> SETTLED
 ~~~
 
 ## Deployment and SDLC View
