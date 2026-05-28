@@ -1,183 +1,89 @@
 <p align="center">
-  <img src="docs/assets/hero.svg" width="100%" alt="UPI Guardian Mode rich animated hero infographic">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=240&color=gradient&text=UPI%20Guardian%20Mode&fontAlign=50&fontAlignY=38&fontSize=46&fontColor=ffffff&desc=AI%20consent%20firewall%20for%20agentic%20UPI%20payments&descAlign=50&descAlignY=60&descSize=16&animation=fadeIn" width="100%" alt="UPI Guardian Mode animated hero banner"/>
 </p>
 
 <p align="center">
-  <img src="frontend/public/logo.svg" width="92" alt="UPI Guardian Mode animated logo">
-</p>
-
-<h1 align="center">UPI Guardian Mode</h1>
-
-<p align="center"><strong>AI consent firewall for agentic UPI payments.</strong></p>
-
-<p align="center">
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-3178c6?style=for-the-badge&logo=typescript&logoColor=white">
-  <img alt="React" src="https://img.shields.io/badge/React-19-149eca?style=for-the-badge&logo=react&logoColor=white">
-  <img alt="Express" src="https://img.shields.io/badge/Express-5-111827?style=for-the-badge&logo=express&logoColor=white">
-  <img alt="Mock UPI" src="https://img.shields.io/badge/NPCI%20UPI-Mocked%20Sandbox-2563eb?style=for-the-badge">
-  <img alt="Security" src="https://img.shields.io/badge/Audit-0%20High%20Vulns-16a34a?style=for-the-badge&logo=securityscorecard&logoColor=white">
-  <img alt="License" src="https://img.shields.io/badge/License-Proprietary%20All%20Rights%20Reserved-991b1b?style=for-the-badge">
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=22&duration=2600&pause=900&center=true&vCenter=true&width=900&lines=Investor+Showcase+%7C+No+Proprietary+Source+Code;Agentic+Payments+Need+Bounded+Authority;Consent+Firewall+for+AI-led+Commerce" alt="animated project narrative"/>
 </p>
 
 <p align="center">
-  <a href="#concept">Concept</a> &middot;
-  <a href="#working-demo">Working Demo</a> &middot;
-  <a href="#bfsi--fintech-benefit">BFSI Benefit</a> &middot;
-  <a href="#aiml--dl-layer">AIML/DL</a> &middot;
-  <a href="#run-locally">Run Locally</a>
+  <img src="https://img.shields.io/badge/Showcase-Concept%20Repository-0f172a?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Domain-Agentic%20Payments%20%7C%20Consent%20%7C%20UPI-2563eb?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Code-Not%20Exposed-991b1b?style=for-the-badge">
 </p>
 
-## Concept
+# UPI Guardian Mode
 
-UPI Guardian Mode is a full-stack UPI-native AI infrastructure prototype. It combines a React RBAC command center, secure Express APIs, CRUD data operations, concept-specific decisioning, and a mocked NPCI/UPI rail response layer. The repo is designed for portfolio demonstration and SDLC review, not live payment processing.
+**AI consent firewall for agentic UPI payments.**
 
-The system uses synthetic data to show how a BFSI or fintech product team could operate ai consent firewall for agentic upi payments. without touching real customer, bank, PSP, NPCI, or UPI rail data.
+This repository is a public concept showcase. It explains the product thesis, safety model, payment-governance logic, AI/ML role and investor-facing roadmap. It does not expose proprietary source code, policy rules, prompts, scoring weights, credentials, payment simulation internals or production integrations.
 
-## Prototype Positioning
+---
 
-This repo is intentionally positioned as a **runnable synthetic prototype**, not a production fintech system. The frontend, APIs, CRUD, RBAC workflow, mock UPI response, tests, Docker files, and documentation are real. The payment rail, security authority, persistence, and AIML/DL models are controlled demo layers.
+## Why this matters
 
-Use the phrasing: "UPI-native AI product prototype with SDLC packaging." Avoid the phrasing: "production-ready agentic payment firewall."
+AI agents will increasingly act on behalf of users in commerce, bill payment, subscription, travel, shopping and merchant interactions. Instant payments create value, but agentic payments also create new risk: prompt injection, merchant substitution, amount escalation, hidden recurrence and consent ambiguity.
 
-## Latest Enhancements
+The problem is not just authentication. The problem is **bounded payment authority**.
 
-This release closes the latest audit loop with practical, testable upgrades:
+## Product thesis
 
-| Area | Enhancement |
-| --- | --- |
-| Payment lifecycle | Added a five-adapter payment ecosystem simulator: PG, PA, TPAP, PSP/bank, and NPCI-style UPI rail. |
-| Webhooks | Added HMAC webhook signatures, duplicate-event idempotency, out-of-order delivery handling, and terminal-state governance. |
-| Security | Replaced raw role headers with signed local demo bearer tokens from `/api/auth/demo-token`; forged `x-user-role` is ignored. |
-| Frontend | Added a **Payment Ecosystem Timeline** CTA and visual lifecycle panel for consent-to-payment authority chain review. |
-| Consent governance | Payment scenarios now include agent ID, consent policy ID, prompt-injection risk, and human step-up review hooks. |
-| AIML/DL | Upgraded `ml/train_model.py` to generate 10,000 synthetic rows, train/test split, metrics, confusion matrix, model card, and feature importance. |
-| Documentation | Added API contract, data model, threat model, observability, model governance, deployment, enterprise architecture, and investor due-diligence docs. |
-| Validation | `npm run verify` and browser E2E smoke tests pass locally with payment ecosystem coverage. |
+UPI Guardian Mode acts as a payment authority firewall between the user, AI agent, merchant and simulated UPI flow. It checks intent, consent boundary, amount, merchant trust, recurrence, context and risk before deciding whether a payment can proceed, pause, step up or block.
 
-## Working Demo
+---
 
-The frontend now has working tabs, CTAs, row drill-downs, create/patch/delete CRUD actions, domain-specific AI decision calls, and a mock UPI/NPCI request-response flow.
+## Concept flow
 
-| Flow | What works |
-| --- | --- |
-| RBAC | Role selector requests a signed local demo bearer token. Forged `x-user-role` headers are ignored. |
-| Tabs | Every sidebar tab changes active content and drill-down context. |
-| CRUD | The primary workspace can create, patch, inspect, and delete synthetic records. |
-| AI decision | `/guardian-decisions` returns explainable reason codes. |
-| Mock UPI | `/api/mock-upi` returns RRN, UPI request id, bank reference, response code, settlement state, and webhook metadata. |
-| Payment ecosystem | `/api/payments/initiate` simulates PG, PA, TPAP, PSP/bank, NPCI-style rail, webhook, refund, dispute, and settlement lifecycle. |
-
-## Payment Ecosystem Simulator
-
-This repository does not use live NPCI, bank, PSP, TPAP, payment aggregator, or payment gateway APIs. It implements a public-safe simulator for product architecture, AI decisioning, fraud/risk workflows, and enterprise SDLC demonstration.
-
-The simulator includes five adapters: NPCI-style UPI rail, TPAP, PSP/bank, payment aggregator, and payment gateway. It also includes HMAC webhook signatures, duplicate-event idempotency, out-of-order webhook handling, settlement batches, disputes, refunds, and a frontend **Payment Ecosystem Timeline** panel.
-
-See [`docs/PAYMENT_ECOSYSTEM_SIMULATOR.md`](docs/PAYMENT_ECOSYSTEM_SIMULATOR.md).
-
-## BFSI / Fintech Benefit
-
-Consumer banks, wallet providers, and AI-commerce platforms can use this architecture to bound what autonomous agents may pay, reduce unauthorized payment disputes, and explain liability decisions.
-
-This project is useful for senior payment, fintech, digital banking, risk, platform, and AI product portfolios because it shows the full product chain: business concept, test data, secure APIs, RBAC, frontend workflows, explainability, model training, CI, documentation, and deployment thinking.
-
-## Architecture
-
-<p align="center">
-  <img src="docs/assets/system-map.svg" width="100%" alt="UPI Guardian Mode architecture system map">
-</p>
-
-~~~mermaid
+```mermaid
 flowchart LR
-  UI["React RBAC Command Center"] --> AUTH["Signed Demo Token"]
-  AUTH --> API["Express API"]
-  API --> RBAC["RBAC + Zod + Helmet + Rate Limit"]
-  API --> CRUD["Synthetic CRUD Store"]
-  API --> AI["Consent Policy Engine"]
-  API --> GUARD["Agent Authority Check"]
-  GUARD --> SIM["Payment Ecosystem Simulator"]
-  SIM --> STEP["Step-up / TPAP Handoff"]
-  STEP --> UI
-  AI --> UI
-~~~
-
-## AIML / DL Layer
-
-The repository includes working Python code in `ml/train_model.py`.
-
-It trains:
-
-- an explainable logistic-regression AIML baseline
-- a compact one-hidden-layer neural-network model as the DL demonstration
-- 10,000 synthetic rows with train/test split
-- holdout metrics, confusion matrix, feature importance, and model-card artifacts at `ml/model_card.json`, `ml/metrics.json`, and `ml/feature_importance.json`
-
-Run:
-
-```bash
-python ml/train_model.py
+  A[User intent] --> B[AI agent payment request]
+  B --> C[Consent boundary check]
+  C --> D[Merchant and amount risk]
+  D --> E[Step-up / allow / block]
+  E --> F[Audit trail and user control]
 ```
 
-Features used for this concept include `amount_paise`, `bank_success_rate`, `collect_decline_rate`, `risk_score`, `latency_ms`, `device_trust_score`, `merchant_trust_score`, and `retry_count`, with the app layer adding consent-specific signals such as merchant trust, agent confidence, prompt injection, category authority, and purpose match.
+## Investor-grade capability map
 
-## Mock UPI / NPCI API
+| Layer | Capability | Value |
+|---|---|---|
+| Market | Agentic payment safety | Emerging AI-commerce infrastructure need |
+| Product | Consent-first payment control | Reduces unauthorised or misunderstood payments |
+| AI/ML | Risk assessment and prompt-injection defence | Protects against adversarial agent behaviour |
+| Platform | Policy API for payment agents | Can plug into apps, PSPs and commerce flows |
+| Governance | Human-in-loop and audit readiness | Responsible AI posture for payment use cases |
 
-Example request:
+---
 
-```json
-{
-  "txnId": "TXN-DEMO-001",
-  "payerVpa": "payer@oksbi",
-  "payeeVpa": "merchant@upi",
-  "amount": 499,
-  "flow": "UPI_INTENT",
-  "purpose": "portfolio test flow",
-  "riskScore": 24,
-  "scenario": "HAPPY_PATH"
-}
-```
+## What visitors should understand in 60 seconds
 
-The response is intentionally NPCI-like for demos, but fully synthetic:
+- Agentic commerce needs a payment-control layer before money moves.
+- Consent must be explicit, bounded, revocable and context-aware.
+- The product is a safety layer, not a replacement for UPI apps or banks.
+- Synthetic events can validate the model before any real payment integration.
+- Proprietary guardrail logic and risk scoring are intentionally not public.
 
-- `gateway: NPCI_UPI_MOCK`
-- `rrn`, `upiRequestId`, `bankRefId`
-- `npciStatus`, `responseCode`, `responseMessage`
-- settlement and pre-settlement hold metadata
-- risk decision and reason codes
-- synthetic PSP/bank webhook callback state
+## Success metrics
 
-## Run Locally
+| Metric | Why it matters |
+|---|---|
+| Unauthorised action prevention | Trust and safety value |
+| Step-up accuracy | User experience balance |
+| User override behaviour | Product tuning and adoption |
+| Agent action auditability | Governance and compliance signal |
 
-```bash
-npm install
-npm run verify
-npm --workspace backend run start
-npm --workspace frontend run preview
-python ml/train_model.py
-```
+## Validation scenarios
 
-Frontend: `http://127.0.0.1:5104`
+- Agent tries to pay a different merchant than requested
+- Amount increases after user approval
+- Recurring mandate hidden in a one-time payment
+- Merchant risk signal changes before payment
+- Prompt-injection attempt manipulates payment intent
+- User-defined family or spend limit gets triggered
 
-Backend health: `http://127.0.0.1:4104/api/health`
+## Positioning
 
-## Documentation
+UPI Guardian Mode sits at the intersection of UPI, AI agents, consent infrastructure, responsible AI and trust-by-design digital payments.
 
-- [Architecture](docs/ARCHITECTURE.md)
-- [API](docs/API.md)
-- [Diagrams](docs/DIAGRAMS.md)
-- [Security](docs/SECURITY.md)
-- [SDLC](docs/SDLC.md)
-- [Testing](docs/TESTING.md)
-- [Prototype Audit Response](docs/PROTOTYPE_AUDIT.md)
-
-## License and Proprietary Rights
-
-This repository is **public for portfolio review only**. It is **not open source**.
-
-Copyright (c) 2026 Prashant Jagtap. All Rights Reserved.
-
-No one may use, copy, modify, distribute, deploy, commercialize, train on, or create derivative works from this code, documentation, diagrams, synthetic data, logos, UI designs, concepts, or repository materials without prior written permission from Prashant Jagtap.
-
-See [LICENSE](LICENSE) and [NOTICE](NOTICE.md). Permission requests: <jprbom@gmail.com>.
-
-**Author:** Prashant Jagtap <jprbom@gmail.com>
+**Owner:** [Prashant Jagtap](https://github.com/jprbom)  
+**Repository type:** Public showcase, proprietary concept
