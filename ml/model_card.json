@@ -1,0 +1,45 @@
+{
+  "project": "UPI Guardian Mode",
+  "target": "guardian_step_up",
+  "features": [
+    "merchant_trust",
+    "agent_confidence",
+    "prompt_injection",
+    "category_allowed",
+    "purpose_match"
+  ],
+  "data_policy": "Synthetic portfolio data only; no live UPI/NPCI/bank/PSP/customer data.",
+  "models": {
+    "aiml_logistic_regression": {
+      "accuracy_on_synthetic_training_set": 1.0,
+      "weights": [
+        -1.467,
+        -3.0377,
+        5.3215,
+        -5.3478,
+        0.0152
+      ],
+      "bias": 2.8156
+    },
+    "dl_tiny_neural_network": {
+      "accuracy_on_synthetic_training_set": 1.0,
+      "hidden_units": 4
+    }
+  },
+  "normalization": {
+    "min": [
+      0.35,
+      0.59,
+      0.08,
+      0,
+      0
+    ],
+    "max": [
+      0.89,
+      0.93,
+      0.81,
+      1,
+      1
+    ]
+  }
+}
